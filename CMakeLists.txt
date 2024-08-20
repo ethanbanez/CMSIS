@@ -7,10 +7,10 @@ add_library(stm32cmsis_templates STATIC)
 
 set(SRC_PATH_PREFIX Source/Templates/)
 
-target_include_directories(stm32cmsis_templates 
-PRIVATE 
-$<TARGET_PROPERTY:stm32cmsis_headers,INTERFACE_INCLUDE_DIRECTORIES>
-$<TARGET_PROPERTY:armcmsis,INTERFACE_INCLUDE_DIRECTORIES>
+target_link_libraries(stm32cmsis_templates 
+PRIVATE
+stm32cmsis_headers
+armcmsis
 )
 
 target_sources(stm32cmsis_templates
@@ -23,5 +23,5 @@ target_sources(stm32cmsis_templates
 
 
 
-install(TARGETS stm32cmsis_headers DESTINATION lib)
+install(TARGETS stm32cmsis_headers DESTINATION include)
 install(TARGETS stm32cmsis_templates DESTINATION lib)
